@@ -12,3 +12,4 @@ streamlit-extras>=0.3.5
 reportlab>=4.0.0
 pytube
 joblib
+scikit-learn
