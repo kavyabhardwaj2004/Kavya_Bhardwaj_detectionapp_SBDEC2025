@@ -1,40 +1,63 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+# streamlit: core framework to build webb app ui
+# streamlit_option_menu: for creating styled sidebar navigation
 import plotly.express as px
 import plotly.graph_objects as go
+# plotly.express and graph_objects for charts and subplots for creating plots within plots
 from plotly.subplots import make_subplots
 import pandas as pd
 import numpy as np
-from typing import Dict, List
-import base64
-from io import BytesIO
+from typing import Dict, List #makes function input claerer and well defined
+import base64 # helps to encode files
+from io import BytesIO # stores generated PDF in memory for download
+# reportlab modules generate professional PDF reports with tables,text,images
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as RLImage, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.lib import colors
-import tempfile
-import os
-from PIL import Image as PILImage
+import tempfile # for creating temporary image files for chart and smaples.
+import os # file handling and path operation
+from PIL import Image as PILImage # converts numpy images to images usable i PDF reports
 import matplotlib.pyplot as plt
 
 def apply_custom_css():
+    ## custom CSS into Streamlit app ; defines entire look and feel of app
     """Apply custom CSS styling to the Streamlit app"""
     st.markdown("""
     <style>
     /* Import Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
     
+    /* FORCE SIDEBAR TEXT + ICONS TO WHITE */
+    section[data-testid="stSidebar"] * {
+        color: white !important;
+}
+
+/* FIX MAIN PAGE HEADING TEXT */
+h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+/* OVERRIDE STREAMLIT MARKDOWN HEADINGS */
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3,
+.stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+    color: white !important;
+}
+
     /* Main app styling */
     .main {
         background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
         font-family: 'Source Sans Pro', sans-serif;
-        color: #2c3e50;
+        # color: #2c3e50;
     }
     
     /* Ensure text visibility */
     .main h1, .main h2, .main h3, .main h4, .main h5, .main h6 {
-        color: #2c3e50 !important;
+        # color: #2c3e50 !important;
+        color: white !important;
         font-weight: 600;
     }
     
@@ -221,8 +244,15 @@ def apply_custom_css():
     .metric-container > div {
         color: #2c3e50 !important;
     }
+    /* FINAL OVERRIDE FOR MAIN HEADER */
+div.main-header h1, div.main-header p {
+    color: white !important;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.8) !important;
+}
+
     </style>
     """, unsafe_allow_html=True)
+    # unsafe_allow_html allows streamlit to render custom html/css(even if it bypasses safety checks) enabing advance styling and layout control
 
 def setup_sidebar_navigation():
     """Setup sidebar navigation menu"""
@@ -235,11 +265,11 @@ def setup_sidebar_navigation():
         """, unsafe_allow_html=True)
         
         selected = option_menu(
-            menu_title=None,
+            menu_title=None, # no title shown above the menu
             options=["Home", "Image Detection", "Video Detection", "Summary Dashboard", "Learn About Heritage"],
             icons=["house", "image", "camera-video", "bar-chart", "book"],
             menu_icon="cast",
-            default_index=0,
+            default_index=0, # seting home as default page
             styles={
                 "container": {"padding": "0!important", "background-color": "transparent"},
                 "icon": {"color": "white", "font-size": "18px"},
@@ -449,6 +479,7 @@ def generate_pdf_report(stats: Dict, summary_text: str, samples: List = None):
                     ax3.set_xlabel('Confidence')
                     ax3.set_ylabel('Frequency')
                     fig3.tight_layout()
+                    # tempfile: charts are saved temporarily so they can be placed inside PDF using
                     tmp3 = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
                     fig3.savefig(tmp3.name, dpi=160)
                     plt.close(fig3)
@@ -462,7 +493,7 @@ def generate_pdf_report(stats: Dict, summary_text: str, samples: List = None):
     # Sample detections section
     if samples:
         story.append(Paragraph("Sample Detections", styles['Heading2']))
-        # Add up to 6 sample images
+        # limiting the report to max 6 samples to keep it clean an readable
         for idx, np_img in enumerate(samples[:6]):
             try:
                 # Ensure image is RGB numpy array; convert to PIL and save
@@ -474,10 +505,10 @@ def generate_pdf_report(stats: Dict, summary_text: str, samples: List = None):
             except Exception:
                 continue
     
-    # Build PDF
+    # Build PDF: doc.build()...for assembling texts,tables, charts and images into final report
     doc.build(story)
     buffer.seek(0)
-    
+    # 👆🏻resets buffers and 👇🏻returns pdf as bytes for downloading
     return buffer.getvalue()
 
 def display_metrics(stats: Dict):
