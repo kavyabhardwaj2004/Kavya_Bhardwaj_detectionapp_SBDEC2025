@@ -12,7 +12,9 @@ import streamlit as st
 class DetectionManager:
     def __init__(self):
         # self.model_path = "/home/surendra208/Documents/jaya/aimoodmate/ai_app/best.pt"
-        self.model_path = "C:\\Users\HP\Downloads\\ai_app\\ai_app\\best.pt"
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        self.model_path = BASE_DIR / "best.pt"
+
         self.model = None
         self.class_names = {
             0: "Stones / Stone Pillars / Stone Structures",
@@ -32,7 +34,7 @@ class DetectionManager:
         """Load the YOLOv11 model"""
         try:
             if os.path.exists(self.model_path):
-                self.model = YOLO(self.model_path)
+                self.model = YOLO(str(self.model_path))
                 return True
             else:
                 st.error(f"Model file not found at {self.model_path}")
