@@ -1,258 +1,128 @@
-# 🏛️ HeritageLens AI
+# 🏛️ HeritageLens AI — Preserving History Through Technology
 
-A comprehensive Streamlit web application for detecting and analyzing heritage sites, archaeological structures, and cultural landmarks using advanced YOLOv11 deep learning technology.
+HeritageLens AI is a comprehensive computer vision platform designed to detect and analyze heritage sites, archaeological structures, and cultural landmarks. Powered by YOLOv11 and Random Forest, it offers real-time site mapping, environmental risk assessment (erosion prediction), and professional reporting tools for researchers and historians.
 
-## 🌟 Features
+## 🌟 Core Modules & Features
+### 📸 1. Image Detection Module
 
-### 📸 Image Detection
-- Upload single or multiple images
-- Real-time object detection with bounding boxes
-- Confidence scores for each detection
-- Cropped detection thumbnails
-- Interactive results display
+Multiple Uploads: Support for batch processing of heritage site photos.
 
-### 🎥 Video Analysis
-- Local video file upload support
-- YouTube video link analysis
-- Real-time frame-by-frame detection
-- Start/stop detection controls
-- Comprehensive video summaries
+Bounding Boxes: High-precision identification of architectural elements.
 
-### 📊 Interactive Dashboard
-- Detailed detection statistics
-- Interactive charts and visualizations
-- Class-wise analysis
-- Confidence score distributions
-- Combined image and video insights
+Detections Statistics: Real-time summary of objects found, average confidence, and most common classes.
 
-### 📚 Educational Content
-- Comprehensive information about heritage classes
-- Cultural significance explanations
-- Preservation guidelines
-- Best practices for heritage documentation
+Automated Reporting: Instant generation of professional PDF reports with detection highlights.
 
-### 📄 PDF Reports
-- Automated report generation
-- Detailed statistics and summaries
-- Professional formatting
-- Downloadable analysis reports
+### 🎥 2. Video Analysis Module
 
-## 🏺 Heritage Classes Detected
+Dynamic Inputs: Support for local .mp4, .avi, .mov files or direct YouTube links.
 
-1. **Stones / Stone Pillars / Stone Structures** 🗿
-   - Ancient stone constructions and architectural elements
-   - Megaliths, temple pillars, stone walls
+Real-time Processing: Live frame-by-frame analysis with on-screen bounding boxes.
 
-2. **Crops / Farmland** 🌾
-   - Agricultural landscapes and farming areas
-   - Traditional farming methods and irrigation systems
+Stats Tracker: Monitor processed frames, elapsed time, and detection progress.
 
-3. **Non-archaeological** 🏔️
-   - Natural landscapes (deserts, water, mountains)
-   - Geographical features and natural formations
+Export Capabilities: Download processed videos and dedicated video analysis reports.
 
-4. **Heritage Sites** 🏛️
-   - Temples, palaces, forts, museums
-   - Major cultural and historical monuments
+### 📊 3. Interactive Summary Dashboard
 
-## 🚀 Installation
+Global Overview: Merged analytics from both your image and video sessions.
 
-### Prerequisites
-- Python 3.8 or higher
-- CUDA-compatible GPU (recommended for better performance)
+Advanced Visuals:
 
-### Setup Instructions
+Detection distribution by heritage class.
 
-1. **Clone or navigate to the project directory:**
-   ```bash
-   cd /home/surendra208/Documents/jaya/aimoodmate/ai_app
-   ```
+Confidence score frequency histograms.
 
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+Trend analysis and class-wise performance.
 
-3. **Verify model file:**
-   Ensure the YOLOv11 model weights are present at:
-   ```
-   /home/surendra208/Documents/jaya/aimoodmate/ai_app/best.pt
-   ```
+Download Hub: Export a combined master report for official documentation.
 
-## 🎯 Usage
+### ⏳ 4. Soil Erosion Susceptibility Prediction
 
-### Starting the Application
+Risk Assessment: Specifically analyzes the site terrain to predict the impact of erosion on ancient structures.
 
-1. **Run the Streamlit app:**
-   ```bash
-   streamlit run app.py
-   ```
+Erosion Heatmaps: Generates specialized visual overlays to highlight vulnerable areas.
 
-2. **Open your browser:**
-   Navigate to `http://localhost:8501`
+ML Integration: Uses a Random Forest model to output risk levels (Low/Medium/High) and exact probability scores.
 
-### Using the Application
+### 📚 5. Educational Portal & Documentation
 
-#### 📸 Image Detection
-1. Navigate to "Image Detection" page
-2. Upload one or more image files
-3. Click "Analyze Images"
-4. View results with bounding boxes and statistics
-5. Download PDF report if needed
+Heritage Knowledge Base: Detailed information on characteristics of Temples, Forts, and Megaliths.
 
-#### 🎥 Video Detection
-1. Go to "Video Detection" page
-2. Choose "Upload Local Video" or "YouTube Link"
-3. Provide video file or YouTube URL
-4. Click "Start Detection" to begin analysis
-5. Click "Stop Detection" to view results
-6. Generate comprehensive video analysis report
+Conservation Guidelines: Learn about global best practices for archaeological preservation and AI’s role in modern history.
 
-#### 📊 Summary Dashboard
-1. Visit "Summary Dashboard" after running detections
-2. View combined statistics from images and videos
-3. Explore interactive charts and visualizations
-4. Download comprehensive analysis reports
+## 🏺 Heritage Classes Identified
 
-#### 📚 Learn About Heritage
-1. Access "Learn About Heritage" page
-2. Explore detailed information about each class
-3. Understand cultural significance and preservation tips
-4. Learn about AI in heritage preservation
+The system is custom-trained to recognize four specific categories:
 
-## 🔧 Technical Details
+Heritage Sites: 🏛️ Temples, palaces, forts, museums, and historical monuments.
 
-### Architecture
-- **Frontend:** Streamlit with custom CSS styling
-- **AI Model:** YOLOv11 (You Only Look Once version 11)
-- **Framework:** PyTorch with Ultralytics
-- **Image Processing:** OpenCV and PIL
-- **Visualization:** Plotly and Matplotlib
-- **PDF Generation:** ReportLab
+Stones/Structures: 🗿 Stone pillars, walls, megaliths, and architectural remnants.
 
-### Model Information
-- **Model Type:** YOLOv11 Object Detection
-- **Classes:** 4 heritage categories
-- **Input:** Images and video frames
-- **Output:** Bounding boxes, class labels, confidence scores
+Crops/Farmland: 🌾 Traditional farming areas and irrigation landscapes.
 
-### Performance
-- **Real-time Processing:** Optimized for live video analysis
-- **Batch Processing:** Efficient handling of multiple images
-- **Memory Management:** Optimized for large video files
-- **GPU Acceleration:** CUDA support for faster processing
+Non-Archaeological: 🏔️ Natural geography like deserts, mountains, and water bodies.
 
-## 🎨 Design Features
+## 🛠️ Technical Stack
 
-### UI/UX
-- **Modern Design:** Clean, professional interface
-- **Warm Color Palette:** Earthy tones (sandstone, bronze, olive green)
-- **Responsive Layout:** Works on different screen sizes
-- **Intuitive Navigation:** Easy-to-use sidebar menu
-- **Interactive Elements:** Hover effects and smooth transitions
+Frontend: Streamlit with custom CSS (Earthy tones: Bronze, Sandstone, Olive).
 
-### Accessibility
-- **Clear Typography:** Readable fonts and appropriate sizing
-- **Color Contrast:** High contrast for better visibility
-- **Keyboard Navigation:** Full keyboard accessibility
-- **Screen Reader Support:** Semantic HTML structure
+Computer Vision: YOLOv11 (Ultralytics) & OpenCV.
 
-## 📋 Requirements
+Predictive Analytics: Scikit-Learn (Random Forest Model).
 
-### System Requirements
-- **RAM:** 8GB minimum, 16GB recommended
-- **Storage:** 2GB free space
-- **GPU:** NVIDIA GPU with CUDA support (optional but recommended)
-- **Internet:** Required for YouTube video processing
+Visualization: Plotly, Matplotlib, and Seaborn.
 
-### Python Dependencies
-- streamlit==1.28.1
-- ultralytics==8.0.196
-- opencv-python==4.8.1.78
-- pillow==10.0.1
-- numpy==1.24.3
-- pandas==2.0.3
-- plotly==5.17.0
-- pytube==15.0.0
-- reportlab==4.0.4
-- matplotlib==3.7.2
-- seaborn==0.12.2
-- altair==5.1.2
-- streamlit-option-menu==0.3.6
-- streamlit-extras==0.3.5
+Language: Python 3.10+.
 
-## 🛠️ Troubleshooting
+Data Export: ReportLab for professional PDF formatting.
 
-### Common Issues
+## 📦 Installation & Setup
+### Step 1: Repository Clone
 
-1. **Model Loading Error:**
-   - Ensure `best.pt` file exists in the project root
-   - Check file permissions
-   - Verify model file integrity
+```bash
+git clone https://github.com/your-username/HeritageLens-AI.git
+cd HeritageLens-AI
+```
 
-2. **CUDA/GPU Issues:**
-   - Install CUDA toolkit if using GPU
-   - Check GPU compatibility
-   - Fall back to CPU processing if needed
+### Step 2: Environment Setup
 
-3. **Memory Issues:**
-   - Reduce video resolution for large files
-   - Process images in smaller batches
-   - Close other applications to free memory
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+```
 
-4. **YouTube Download Issues:**
-   - Check internet connection
-   - Verify YouTube URL format
-   - Some videos may have download restrictions
+### Step 3: Install Dependencies
 
-### Performance Optimization
+```bash
+pip install -r requirements.txt
+```
 
-1. **For Better Speed:**
-   - Use GPU acceleration
-   - Reduce image/video resolution
-   - Process fewer frames per second in videos
+### Step 4: Verification
 
-2. **For Better Accuracy:**
-   - Use high-quality images
-   - Ensure good lighting conditions
-   - Avoid heavily compressed videos
+Ensure the trained weights file (best.pt) is in the project root folder.
 
-## 🤝 Contributing
+## 🚀 Execution
 
-### Development Setup
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+To launch the application:
+```bash
+streamlit run app.py
+```
 
-### Code Style
-- Follow PEP 8 guidelines
-- Use meaningful variable names
-- Add comments for complex logic
-- Maintain consistent formatting
+Access: Open http://localhost:8501 in your browser.
 
-## 📄 License
+## 🎨 Design & Accessibility
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+UI/UX: Earthy, professional color palette designed for high contrast and readability.
 
-## 🙏 Acknowledgments
+Responsive: Sidebar navigation allows seamless transitions between Analysis and Analytics.
 
-- **Ultralytics** for the YOLOv11 model framework
-- **Streamlit** for the web application framework
-- **OpenCV** for computer vision capabilities
-- **Plotly** for interactive visualizations
-- **PyTorch** for deep learning infrastructure
+Hardware Support: Optimized for both CPU and CUDA-compatible NVIDIA GPUs for faster video processing.
 
-## 📞 Support
+## 📄 License & Acknowledgments
 
-For issues, questions, or contributions:
-- Create an issue in the repository
-- Check the troubleshooting section
-- Review the documentation
+License: MIT License.
 
----
+Credits: Special thanks to Ultralytics (YOLOv11), Streamlit, and the archaeology community for providing site documentation datasets.
 
-**🏛️ HeritageLens AI - Preserving Heritage Through Technology**
-
-Built with ❤️ for archaeologists, historians, and heritage enthusiasts worldwide.
+### 🏛️ HeritageLens AI — Preserving our shared past for a digital future.
