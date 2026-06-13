@@ -9,6 +9,27 @@ result = subprocess.run(
     capture_output=True,
     text=True,
 )
+import streamlit as st
+import subprocess
+import sys
+
+st.write("Python Version:", sys.version)
+
+result = subprocess.run(
+    [sys.executable, "-m", "pip", "show", "opencv-python-headless"],
+    capture_output=True,
+    text=True,
+)
+
+st.write("STDOUT:")
+st.code(result.stdout)
+
+st.write("STDERR:")
+st.code(result.stderr)
+
+st.write("Return Code:", result.returncode)
+
+st.stop()
 
 st.code(result.stdout)
 import streamlit as st
