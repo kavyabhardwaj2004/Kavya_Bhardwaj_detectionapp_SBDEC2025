@@ -1,15 +1,3 @@
-import subprocess
-import sys
-import streamlit as st
-
-result = subprocess.run(
-    [sys.executable, "-m", "pip", "freeze"],
-    capture_output=True,
-    text=True
-)
-
-st.code(result.stdout)
-st.stop()
 import streamlit as st
 import os
 import sys
