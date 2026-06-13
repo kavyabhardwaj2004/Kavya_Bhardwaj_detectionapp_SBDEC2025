@@ -1,7 +1,14 @@
+import subprocess
+import sys
 import streamlit as st
-import cv2
 
-st.success(f"OpenCV Loaded: {cv2.__version__}")
+result = subprocess.run(
+    [sys.executable, "-m", "pip", "freeze"],
+    capture_output=True,
+    text=True
+)
+
+st.code(result.stdout)
 st.stop()
 import streamlit as st
 import os
