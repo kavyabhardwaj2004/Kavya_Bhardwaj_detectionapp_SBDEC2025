@@ -3,6 +3,13 @@ import os
 import sys
 from pathlib import Path
 
+try:
+    import cv2
+    st.success(f"OpenCV Version: {cv2.__version__}")
+except Exception as e:
+    st.exception(e)
+    st.stop()
+
 # Add the current directory to Python path
 sys.path.append(str(Path(__file__).parent))
 
