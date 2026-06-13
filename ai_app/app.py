@@ -1,4 +1,17 @@
 import streamlit as st
+import subprocess
+import sys
+
+st.write(sys.version)
+
+result = subprocess.run(
+    [sys.executable, "-m", "pip", "show", "opencv-python-headless"],
+    capture_output=True,
+    text=True,
+)
+
+st.code(result.stdout)
+import streamlit as st
 import os
 import sys
 from pathlib import Path
